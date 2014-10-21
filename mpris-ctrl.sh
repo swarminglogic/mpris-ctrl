@@ -10,31 +10,32 @@ executable="$0"
 function show-help {
 echo "$0 - Control MPRIS Players
 
-Usage:
-$0 [OPTIONS] PLAYER COMMAND
+USAGE:
+$0 [OPTIONS]
+$0 PLAYER COMMAND [ARGUMENTS]
 
 OPTIONS:
--h, --help                   Show help
--v, --version                Print version information
--l, --list                   Lists available NAME targets
+-h, --help              Show help
+-v, --version           Print version information
+-l, --list              Lists available NAME targets
 
-ROOT COMMANDS:
+COMMANDS (ROOT):
 raise                   Raises player window
 quit                    Quits player
 
-PLAYER COMMANDS:
+COMMANDS (PLAYER):
 play                    Issues play command
 pause                   Issues pause command
 stop                    Issues stop command
 play-pause              Toggles between playing and pausing
 next                    Plays next item in playlist
 prev[ious]              Plays previous item in playlist
+status                  Displays the status of the player
 volume                  Get volume level.
 volume [LEVEL]          Set volume level.
                         LEVEL should be in range [0.0, 1.0]
-status                  Displays the status of the player
 
-PLAYLIST COMMANDS:
+COMMANDS (PLAYLIST):
 tracks                  Displays tracks
 add-track PATH [PLAY]   Appends file PATH to playlist.
                         PLAY should be one of {true, false(default)}
