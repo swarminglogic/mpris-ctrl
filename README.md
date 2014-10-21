@@ -38,3 +38,9 @@ Append video to vlc playlist:
 ```
 $ mpris-ctrl vlc add-track video.mp4
 ```
+
+
+## License
+The `mpris-ctrl` utility is licensed under the MIT License.
+
+See [`LICENSE`](LICENSE)
