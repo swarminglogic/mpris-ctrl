@@ -227,12 +227,18 @@ function execute-command {
             play=false
             [ $# -ge 2 ] && file="$2"
             [ $# -eq 3 ] && play="$3"
+            absolute_file=$(dirname $(readlink -e "$file"))/$(basename "$file")
             lastTrack=$($executable $player tracks | tail -n 1)
-            if [ -f "$file" ] ; then
-                dbus-tracklist-command AddTrack string:"file://${file}" \
+            if [ -f "$absolute_file" ] ; then
+                dbus-tracklist-command AddTrack string:"file://${absolute_file}" \
                     objpath:$lastTrack \
                     boolean:$play > /dev/null
             fi
+            ;;
+        *)
+            echo "'$1' is not a valid command"
+            exit 1
+            ;;
     esac
 }
 
