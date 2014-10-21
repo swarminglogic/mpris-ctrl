@@ -8,16 +8,33 @@ Command-line utility for controlling media players supporting MPRIS (vlc, audaci
 `mpris-ctrl` simplifies common `D-Bus` message commands that are supported by the [MPRIS D-Bus interface specification](http://specifications.freedesktop.org/mpris-spec/latest/)
 
 ## Installing
-`mpris-ctrl` is a standalone script, and is installed by placing (or symlinking) to somewhere in the `PATH` variable.
+`mpris-ctrl` is a standalone script, and is installed by placing it (or symlinking to) somewhere in the `PATH` variable.
 
-A suggested way to download repository and install for all users:
+A suggested way to download and install for all users:
 ```
-TODO
+sudo git clone https://github.com/swarminglogic/mpris-ctrl.git /opt/mpris-ctrl
+sudo ln -s /opt/mpris-ctrl/mpris-ctrl.sh /usr/local/bin/mpris-ctrl
 ```
 
 
 ## Examples
+
+Listing active and supported MPRIS player targets:
 ```
-TODO
+$ mpris-ctrl -l
 ```
 
+Toggling spotify pause/play:
+```
+$ mpris-ctrl spotify pause-play
+```
+
+Jump to next spotify track:
+```
+$ mpris-ctrl spotify next
+```
+
+Append video to vlc playlist:
+```
+$ mpris-ctrl vlc add-track video.mp4
+```
