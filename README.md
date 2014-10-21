@@ -16,9 +16,41 @@ sudo git clone https://github.com/swarminglogic/mpris-ctrl.git /opt/mpris-ctrl
 sudo ln -s /opt/mpris-ctrl/mpris-ctrl.sh /usr/local/bin/mpris-ctrl
 ```
 
+## Usage / Supported Commands
+```
+Usage:
+mpris-ctrl [OPTIONS] PLAYER COMMAND
+
+OPTIONS:
+-h, --help              Show help
+-v, --version           Print version information
+-l, --list              Lists available NAME targets
+
+ROOT COMMANDS:
+raise                   Raises player window
+quit                    Quits player
+
+PLAYER COMMANDS:
+play                    Issues play command
+pause                   Issues pause command
+stop                    Issues stop command
+play-pause              Toggles between playing and pausing
+next                    Plays next item in playlist
+prev[ious]              Plays previous item in playlist
+volume                  Get volume level.
+volume [LEVEL]          Set volume level.
+                        LEVEL should be in range [0.0, 1.0]
+status                  Displays the status of the player
+
+PLAYLIST COMMANDS:
+tracks                  Displays tracks
+add-track PATH [PLAY]   Appends file PATH to playlist.
+                        PLAY should be one of {true, false(default)}
+                        If true: append and skip to this item in the playlist.
+                        If false, append the item to the playlist.
+```
 
 ## Examples
-
 Listing active and supported MPRIS player targets:
 ```
 $ mpris-ctrl -l
