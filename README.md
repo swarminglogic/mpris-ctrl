@@ -24,9 +24,9 @@ Listing active and supported MPRIS player targets:
 $ mpris-ctrl -l
 ```
 
-Toggling spotify pause/play:
+Toggling spotify play-pause:
 ```
-$ mpris-ctrl spotify pause-play
+$ mpris-ctrl spotify play-pause
 ```
 
 Jump to next spotify track:
