@@ -230,6 +230,7 @@ function execute-command {
             [ $# -eq 3 ] && play="$3"
             absolute_file=$(dirname $(readlink -e "$file"))/$(basename "$file")
             lastTrack=$($executable $player tracks | tail -n 1)
+            [ -z "$lastTrack" ] && lastTrack="/org/mpris/MediaPlayer2/TrackList/NoTrack"
             if [ -f "$absolute_file" ] ; then
                 dbus-tracklist-command AddTrack string:"file://${absolute_file}" \
                     objpath:$lastTrack \
