@@ -39,6 +39,10 @@ play-pause              Toggles between playing and pausing
 next                    Plays next item in playlist
 prev[ious]              Plays previous item in playlist
 status                  Displays the status of the player
+volumeup [VALUE]        Increase volume level by [VALUE].
+volumedown [VALUE]      Decrease volume level by [VALUE].
+                        VALUE should be in range [0.1, 1.0].
+                        If no [VALUE] is set then the default is 0.05
 volume                  Get volume level.
 volume [LEVEL]          Set volume level.
                         LEVEL should be in range [0.0, 1.0]

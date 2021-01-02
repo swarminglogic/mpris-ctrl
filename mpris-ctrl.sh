@@ -1,8 +1,8 @@
 #!/bin/bash
 
 program_name="mpris-ctrl"
-version=0.0.1
-versionDate="2014-10-20"
+version=0.0.2
+versionDate="2020-12-30"
 mp_object="/org/mpris/MediaPlayer2"
 executable="$0"
 
@@ -31,6 +31,10 @@ play-pause              Toggles between playing and pausing
 next                    Plays next item in playlist
 prev[ious]              Plays previous item in playlist
 status                  Displays the status of the player
+volumeup [VALUE]        Increase volume level by [VALUE].
+volumedown [VALUE]      Decrease volume level by [VALUE].
+                        VALUE should be in range [0.1, 1.0].
+                        If no [VALUE] is set then the default is 0.05
 volume                  Get volume level.
 volume [LEVEL]          Set volume level.
                         LEVEL should be in range [0.0, 1.0]
@@ -207,6 +211,28 @@ function execute-command {
             dbus-player-command Next      > /dev/null ;;
         prev|previous)
             dbus-player-command Previous  > /dev/null ;;
+        volumeup)
+            set -- $@
+            if [ -z "${2}" ];then
+                volumestep="0.05"
+            else
+                volumestep="${2}"
+            fi
+            volume_current="$(dbus-get-player-property Volume | grep double | awk '{print $3}')"
+            vulumeset="$(perl -e "print "${volume_current}" + "${volumestep}"")"
+            dbus-set-player-property Volume variant:double:"${vulumeset}" >/dev/null
+            ;;
+        volumedown)
+            set -- $@
+            if [ -z "${2}" ];then
+                volumestep="0.05"
+            else
+                volumestep="${2}"
+            fi
+            volume_current="$(dbus-get-player-property Volume | grep double | awk '{print $3}')"
+            vulumeset="$(perl -e "print "${volume_current}" - "${volumestep}"")"
+            dbus-set-player-property Volume variant:double:"${vulumeset}" >/dev/null
+            ;;
         volume)
             set -- $@
             if [ $# -eq 2 ] ; then
