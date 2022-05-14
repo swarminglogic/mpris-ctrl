@@ -103,7 +103,7 @@ function parse-parameters {
     while test $# -gt 0; do
         case "$1" in
             -h|--help)
-                showHelp 0 ;;
+                show-help 0 ;;
             -v|--version)
                 echo "$program_name $version" ; exit 0 ;;
             -l|--list)
