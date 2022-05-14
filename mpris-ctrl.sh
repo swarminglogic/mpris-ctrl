@@ -1,8 +1,8 @@
 #!/bin/bash
 
 program_name="mpris-ctrl"
-version=0.0.2
-versionDate="2020-12-30"
+version=0.0.3
+versionDate="2022-05-14"
 mp_object="/org/mpris/MediaPlayer2"
 executable="$0"
 
