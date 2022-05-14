@@ -219,7 +219,7 @@ function execute-command {
                 volumestep="${2}"
             fi
             volume_current="$(dbus-get-player-property Volume | grep double | awk '{print $3}')"
-            vulumeset="$(perl -e "print "${volume_current}" + "${volumestep}"")"
+            vulumeset="$(echo - | awk "{print "${volume_current}" + "${volumestep}"}")"
             dbus-set-player-property Volume variant:double:"${vulumeset}" >/dev/null
             ;;
         volumedown)
@@ -230,7 +230,7 @@ function execute-command {
                 volumestep="${2}"
             fi
             volume_current="$(dbus-get-player-property Volume | grep double | awk '{print $3}')"
-            vulumeset="$(perl -e "print "${volume_current}" - "${volumestep}"")"
+            vulumeset="$(echo - | awk "{print "${volume_current}" - "${volumestep}"}")"
             dbus-set-player-property Volume variant:double:"${vulumeset}" >/dev/null
             ;;
         volume)
