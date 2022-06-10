@@ -1,8 +1,8 @@
 #!/bin/bash
 
 program_name="mpris-ctrl"
-version=0.0.2
-versionDate="2020-12-30"
+version=0.0.3
+versionDate="2022-05-14"
 mp_object="/org/mpris/MediaPlayer2"
 executable="$0"
 
@@ -103,7 +103,7 @@ function parse-parameters {
     while test $# -gt 0; do
         case "$1" in
             -h|--help)
-                showHelp 0 ;;
+                show-help 0 ;;
             -v|--version)
                 echo "$program_name $version" ; exit 0 ;;
             -l|--list)
@@ -219,7 +219,7 @@ function execute-command {
                 volumestep="${2}"
             fi
             volume_current="$(dbus-get-player-property Volume | grep double | awk '{print $3}')"
-            vulumeset="$(perl -e "print "${volume_current}" + "${volumestep}"")"
+            vulumeset="$(echo - | awk "{print "${volume_current}" + "${volumestep}"}")"
             dbus-set-player-property Volume variant:double:"${vulumeset}" >/dev/null
             ;;
         volumedown)
@@ -230,7 +230,7 @@ function execute-command {
                 volumestep="${2}"
             fi
             volume_current="$(dbus-get-player-property Volume | grep double | awk '{print $3}')"
-            vulumeset="$(perl -e "print "${volume_current}" - "${volumestep}"")"
+            vulumeset="$(echo - | awk "{print "${volume_current}" - "${volumestep}"}")"
             dbus-set-player-property Volume variant:double:"${vulumeset}" >/dev/null
             ;;
         volume)
